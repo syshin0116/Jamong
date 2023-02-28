@@ -1,23 +1,25 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-	<head>
-        <meta charset="UTF-8"/>
-		<!-- 공통 스크립트-->
-		<th:block th:replace="~{fragments/script :: scriptFragment}"></th:block>
-	</head>      
-    <!-- 공통 헤드-->
-    <head th:replace="~{fragments/head :: headFragment}"></head>
- 	
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	  xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout ">
+<head>
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content=""/>
+	<meta name="author" content="syshin0116, choisuna1234"/>
+	<!-- 공통 헤드-->
+	<th:block th:replace="~{fragments/head :: headFragment}"></th:block>
+</head>
 
-    <body>
-	    <!-- 공통 헤더-->
-		<th:block th:replace="~{fragments/header :: headerFragment}"></th:block>
-		
-		<!-- 개별 개발 컨텐츠-->
-		<th:block layout:fragment="content"></th:block>
-	    
-	    <!-- 공통 풋터-->
-		<th:block  th:replace="~{fragments/footer :: footerFragment}"></th:block>
-	</body>
+<body>
+<!-- 공통 헤더-->
+<th:block th:replace="~{fragments/header :: headerFragment}"></th:block>
+
+<!-- 개별 개발 컨텐츠-->
+<th:block layout:fragment="content"></th:block>
+
+<!-- 공통 풋터-->
+<th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
+</body>
 </html>
 
