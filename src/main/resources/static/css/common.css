@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+/*[data-bs-theme=light] {*/
+/*  --bs-theme: #CF5260*/
+/*  !*F94040*!*/
+/*}*/
+
+/*.bg-theme {*/
+/*  --bs-bg-opacity: 1;*/
+/*  background-color: #CF5260;*/
+/*}*/
+
+.feature {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 4rem;
+  width: 4rem;
+  font-size: 2rem;
+}
+.img-size-contain{
+  object-fit: fill;
+}
