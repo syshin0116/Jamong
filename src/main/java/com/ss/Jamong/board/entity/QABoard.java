@@ -16,6 +16,6 @@ public class QABoard {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idx;
 
-
+    private String title;
 
 }
