@@ -40,6 +40,7 @@ public class User implements UserDetails{
 
     @UpdateTimestamp
     private LocalDate memModDate;
+
     //권한[ROLE_USER, ROLE_ADMIN]
     @Enumerated(EnumType.STRING)
     private Role role;

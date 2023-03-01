@@ -27,10 +27,6 @@ public class UserService {
 
     //id 중복 검사
     public String idCheck(String username) {
-//        HashMap<String, Object> map = new HashMap<>();
-//        map.put("result", userRepository.existsByUsername(username));
-//        return map;
-
         Optional<User> optionalMemberEntity = userRepository.findByUsername(username);
         if (optionalMemberEntity.isEmpty()){
             return "ok";
