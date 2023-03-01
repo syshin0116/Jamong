@@ -17,5 +17,5 @@ public class QABoard {
     private Long idx;
 
     private String title;
-
+    private String content;
 }
