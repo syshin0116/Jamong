@@ -1,0 +1,4 @@
+## .gitignore
+
+/src/main/resources/application-jwt.yaml
+/src/main/resources/application-oauth.yaml
