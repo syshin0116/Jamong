@@ -14,10 +14,11 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.Optional;
 
-@Service
+
 @RequiredArgsConstructor
 @Getter
 @Slf4j
+@Service
 public class JwtService {
 
     @Value("${jwt.secretKey}")

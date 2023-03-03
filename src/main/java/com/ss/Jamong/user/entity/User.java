@@ -16,12 +16,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-@Data
-@Builder
-@NoArgsConstructor//(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
-@Table(name="user")
+@Builder
+@AllArgsConstructor
 public class User implements UserDetails{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
