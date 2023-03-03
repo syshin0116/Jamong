@@ -1,0 +1,25 @@
+package com.ss.Jamong.user.controller;
+
+import com.ss.Jamong.user.entity.UserRegisterRequest;
+import com.ss.Jamong.user.service.UserService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequiredArgsConstructor
+public class UserRestController {
+    private final UserService userService;
+    @PostMapping("/register")
+    public String register(@RequestBody UserRegisterRequest userRegisterRequest)throws Exception{
+        userService.register((userRegisterRequest));
+        return "회원가입 성공";
+    }
+
+    @GetMapping("/jwt-test")
+    public String jwtTest(){
+        return "jwtTest 요청 성공";
+    }
+}
