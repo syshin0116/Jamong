@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -19,6 +20,7 @@ import java.util.Optional;
 @Getter
 @Slf4j
 @Service
+@PropertySource(value = "application-jwt.yaml")
 public class JwtService {
 
     @Value("${jwt.secretKey}")
