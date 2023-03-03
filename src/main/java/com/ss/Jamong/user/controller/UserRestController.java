@@ -1,21 +1,30 @@
 package com.ss.Jamong.user.controller;
 
+import com.nimbusds.openid.connect.sdk.AuthenticationResponse;
 import com.ss.Jamong.user.entity.UserRegisterRequest;
 import com.ss.Jamong.user.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/user")
 public class UserRestController {
     private final UserService userService;
+
+    /*아이디 중복체크*/
+    @PostMapping("/idCheck")
+    public Boolean idCheck(@RequestParam String username){
+        Boolean checkResult = userService.idCheck(username);
+        return checkResult;
+    }
     @PostMapping("/register")
-    public String register(@RequestBody UserRegisterRequest userRegisterRequest)throws Exception{
-        userService.register((userRegisterRequest));
-        return "회원가입 성공";
+    public ResponseEntity<String> register(@RequestBody UserRegisterRequest userRegisterRequest)throws Exception{
+        userService.register(userRegisterRequest);
+        return ResponseEntity.ok("회원가입 성공");
     }
 
     @GetMapping("/jwt-test")

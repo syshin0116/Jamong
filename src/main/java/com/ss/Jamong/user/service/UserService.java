@@ -49,19 +49,8 @@ public class UserService {
     }
 
     //id 중복 검사
-    public String idCheck(String username) {
-        Optional<User> optionalMemberEntity = userRepository.findByUsername(username);
-        if (optionalMemberEntity.isEmpty()){
-            return "ok";
-        }else{
-            return "no";
-        }
+    public boolean idCheck(String username) {
+        return userRepository.existsByUsername(username);
     }
 
-    //닉네임 중복 검사
-//    public HashMap<String, Object> nicknameOverlap(String nickname) {
-//        HashMap<String, Object> map = new HashMap<>();
-//        map.put("result", userRepository.existsByNickname(nickname));
-//        return map;
-//    }
 }
