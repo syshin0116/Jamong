@@ -45,3 +45,13 @@ spring:
     # Thymeleaf
     thymeleaf:
         cache: false
+
+    profiles:
+        group:
+            "local" : "local, jwt, oauth"
+        active : local
+---
+spring:
+    config:
+        activate:
+            on-profile: "local"

@@ -6,16 +6,17 @@
     <!--headerFragment 선언-->
     <th:block th:fragment="headerFragment">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div style="margin-left: 20px">
+            <a class="navbar-brand" href="/"><img class="logo" alt="Jamong logo" src="/assets/jamong-flat-logo-white-transparent-background.png" height="30"></a>
+            </div>
+            <div class="container px-1">
 
-            <div class="container px-5">
-
-                <a class="navbar-brand" href="/"><img class="logo" alt="Jamong logo" src="/assets/jamong-flat-logo-white-transparent-background.png" height="50"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="/">홈</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/user/login">로그인</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/user/register">회원가입</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/login">로그인</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/register">회원가입</a></li>
 
 
                         <li class="nav-item"><a class="nav-link" href="/member/">회원관리</a></li>

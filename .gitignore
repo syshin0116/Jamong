@@ -35,3 +35,7 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### secret keys, client keys in yaml files
+/src/main/resources/application-jwt.yaml
+/src/main/resources/application-oauth.yaml

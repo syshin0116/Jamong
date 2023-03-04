@@ -122,7 +122,7 @@
                         username: _value
                     },
                     success: function (result) {
-                        if (result == "ok") {
+                        if (result == "false") {
                             IS_ID_CHK = true;
                             $("#usernameCheck")[0].innerHTML = "사용 가능한 아이디 입니다.";
                             $("#usernameCheck")[0].style.color = "green";
@@ -317,15 +317,15 @@
             console.log("registerForm>> "+data);
             $.ajax({
 
-                url: "/api/v1/auth/register",
+                url: "/user/register",
                 type: "post",
                 contentType: "application/json; charset=utf-8",
                 data: data,
-                dataType: 'json',
+                // dataType: 'json',
                 success: function (data) {
-                    alert("success");
+                    sessionStorage.setItem("success", "회원가입 성공");
                     console.log(data);
-                    window.location.href = '/';
+                    window.location.href = '/login';
                 },
                 error: function (request, status, error) {
                     console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);

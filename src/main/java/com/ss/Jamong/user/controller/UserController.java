@@ -2,12 +2,14 @@ package com.ss.Jamong.user.controller;
 
 
 import com.ss.Jamong.user.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+@Slf4j
 @Controller
-@RequestMapping("/user")
+//@RequestMapping("")
 public class UserController {
 
     @Autowired
@@ -26,11 +28,6 @@ public class UserController {
     }
 
 
-    /*아이디 중복체크*/
-    @PostMapping("/idCheck")
-    public @ResponseBody String idCheck(@RequestParam String username){
-        String checkResult = userService.idCheck(username);
-        return checkResult;
-    }
+
 
 }
