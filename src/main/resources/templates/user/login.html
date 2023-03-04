@@ -9,6 +9,20 @@
 <!-- 해당 html페이지에서만 사용할 css, script  -->
 <th:block layout:fragment="css"></th:block>
 <th:block layout:fragment="script"></th:block>
+<style>
+    .social_login {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    img{
+        margin: 4px; cursor: pointer;
+    }
+
+
+</style>
 <th:block layout:fragment="content">
     <section class="bg-light py-5 text-center">
         <div class="container px-5 my-5 px-5">
@@ -25,6 +39,8 @@
                 <div class="col-lg-6">
                     <form class="form-signin" id="loginForm" th:action="@{/user/login}" method="post">
                         <h1 class="fw-bolder">로그인</h1>
+                        <hr>
+
                         <div th:if="${param.error}" class="alert alert-danger" role="alert">Invalid username and password.</div>
                         <div th:if="${param.logout}" class="alert alert-primary" role="alert">로그아웃되었습니다.</div>
 
@@ -44,11 +60,26 @@
                         </div>
 
                         <!-- 로그인  Button-->
-                        <div class="d-grid"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="button">로그인</button></div>
+                        <div class="d-grid">
+                            <button class="btn btn-primary btn-lg disabled" id="submitButton" type="button">로그인</button>
+                        </div>
+
+<!--                        <img th:src="@{/image/kakao_login_medium_wide.png}"-->
+<!--                        <img th:src="@{/image/naver_login_official.png}"-->
+<!--                        <img th:src="@{/image/btn_google_signin_light_normal_web@2x.png}"-->
                     </form>
-                    <a href="/oauth2/authorization/kakao" class="social_login_btn"><img th:src="@{/image/kakao_login_medium_wide.png}"></a><br>
-                    <a href="/oauth2/authorization/google" class="social_login_btn"><img th:src="@{/image/btn_google_signin_light_normal_web@2x.png}"></a><br>
-                    <a href="/oauth2/authorization/naver" class="social_login_btn"><img th:src="@{/image/naver_login_완성형.png}"></a><br>
+                    <div class="social_login" style="padding-top: 20px">
+
+                        <h1>소셜 로그인</h1>
+                        <hr>
+
+                        <img th:src="@{/image/kakao_icon.png}" style="width:60px;height:60px;margin: 4px; cursor: pointer;">
+                        <img th:src="@{/image/google_icon.png}" style="width:60px;height:60px;margin: 4px; cursor: pointer;">
+                        <img th:src="@{/image/naver_icon.png}" style="width:60px;height:60px;margin: 4px; cursor: pointer;">
+                    </div>
+<!--                    <a href="/oauth2/authorization/kakao" class="social_login_btn"><img th:src="@{/image/kakao_login_medium_wide.png}"></a><br>-->
+<!--                    <a href="/oauth2/authorization/google" class="social_login_btn"><img th:src="@{/image/btn_google_signin_light_normal_web@2x.png}"></a><br>-->
+<!--                    <a href="/oauth2/authorization/naver" class="social_login_btn"><img th:src="@{/image/naver_login_완성형.png}"></a><br>-->
                 </div>
             </div>
         </div>
