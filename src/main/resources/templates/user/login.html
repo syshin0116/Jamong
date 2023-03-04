@@ -16,6 +16,7 @@
         object-fit: cover;
     }
 
+
 </style>
 <th:block layout:fragment="content">
     <section class="bg-light py-5 text-center">
@@ -53,10 +54,15 @@
                         <!-- 로그인  Button-->
                         <div class="d-grid">
                             <button class="btn btn-primary btn-lg disabled" id="submitButton" type="button">로그인</button>
-                            <button class="btn btn-lg" type="button"> <img th:src="@{/image/kakao_login_medium_wide.png}"></button>
-                            <button class="btn btn-lg" type="button"> <img th:src="@{/image/naver_login_official.png}" alt="네이버 로그인"></button>
-                            <button class="btn btn-lg" type="button"> <img th:src="@{/image/btn_google_signin_light_normal_web@2x.png}" alt="구글 로그인"></button>
                         </div>
+
+                        <div class="d-grid">
+
+                        <button class="btn btn-lg" type="button"> <img th:src="@{/image/kakao_login_medium_wide.png}"></button>
+                        <button class="btn btn-lg" type="button"> <img th:src="@{/image/naver_login_official.png}" alt="네이버 로그인"></button>
+                        <button class="btn btn-lg" type="button"> <img th:src="@{/image/btn_google_signin_light_normal_web@2x.png}" alt="구글 로그인"></button>
+                        </div>
+
                     </form>
                     <hr>
                     <a href="/oauth2/authorization/kakao" class="social_login_btn"><img th:src="@{/image/kakao_login_medium_wide.png}"></a><br>
