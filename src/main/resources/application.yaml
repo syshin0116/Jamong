@@ -22,7 +22,7 @@ spring:
         database: mysql
         show-sql: 'true'
         hibernate:
-            ddl-auto: create-drop
+            ddl-auto: update
         properties:
             hibernate:
                 format_sql: 'true'
@@ -42,7 +42,16 @@ spring:
         password: Jamong
         driver-class-name: com.mysql.cj.jdbc.Driver
         url: jdbc:mysql://localhost:3306/Jamong?useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
-
     # Thymeleaf
     thymeleaf:
         cache: false
+
+    profiles:
+        group:
+            "local" : "local, jwt, oauth"
+        active : local
+---
+spring:
+    config:
+        activate:
+            on-profile: "local"
