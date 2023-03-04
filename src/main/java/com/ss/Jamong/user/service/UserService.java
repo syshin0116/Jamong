@@ -42,7 +42,7 @@ public class UserService {
                 .birth(userRegisterRequest.getBirth())
                 .phone(userRegisterRequest.getPhone())
                 .imageUrl(userRegisterRequest.getImageUrl())
-                .role(Role.ROLE_USER)
+                .role(Role.USER)
         .build();
 
         userRepository.save(user);
