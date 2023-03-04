@@ -1,37 +1,52 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
 <head>
-  <meta charset="UTF-8">
-  <title>게시글 리스트 페이지</title>
+    <meta charset="UTF-8">
+    <title>게시글 리스트 페이지</title>
 </head>
-<style>
-  .layout{
-    width : 500px;
-    margin : 0 auto;
-    margin-top : 40px;
-  }
-</style>
-<body>
-<div class="layout">
-  <table>
-    <thead>
-    <tr>
-      <th>글 번호</th>
-      <th>제목</th>
-      <a th:href="@{/board/write}"></th:href>글쓰기</a>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <tr th:each="qaboard : ${list}">
-      <td th:text="${qaboard.content}">1</td>
-      <td th:text="${qaboard.title}">제목입니다.</td>
-    </tr>
-    </tr>
-    </tbody>
+<th:block layout:fragment="css">
+    <style>
+        .layout {
+            width: 500px;
+            margin: 0 auto;
+            margin-top: 40px;
+        }
+        .title{
+            margin-top: 150px;
+            text-align: center;
+        }
+    </style>
+</th:block>
+<th:block layout:fragment="script"></th:block>
 
-  </table>
+<th:block layout:fragment="content">
+<!--<p style="text-align: center;">-->
+<div class="title">
+    <span style="font-size: 36px;">COMMUNITY</span>
+</p>
 </div>
-
-</body>
+<div class="layout">
+    <table>
+        <thead>
+        <tr>
+            <th>글 번호</th>
+            <th>제목</th>
+            <a th:href="@{/board/write}"></th:href>글쓰기</a>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="board : ${list}">
+            <td th:text="${board.idx}">1</td>
+            <td>
+                <a th:text="${board.title}"
+                   th:href="@{/board/detail(idx=${board.idx})}">제목입니다.</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</th:block>
 </html>

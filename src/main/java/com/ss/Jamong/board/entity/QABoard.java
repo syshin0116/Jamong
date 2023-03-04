@@ -20,7 +20,7 @@ public class QABoard {
     @GeneratedValue(strategy = GenerationType.AUTO) //ID값을 NULL로하면 DB가 알아서 AUTO_INCREMENT해줌
     private Long idx; //게시판 번호
     private String title; //제목
-    @Column(nullable = false, length=1000)
+    @Column(length=1000)
     private String content; //내용
     private String writer; //작성자
     private int views_hit; //조회수
