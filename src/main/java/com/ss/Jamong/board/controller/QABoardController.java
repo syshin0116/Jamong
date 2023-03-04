@@ -38,11 +38,38 @@ public class QABoardController {
     }
 
      //게시판 상세보기
-    @GetMapping("/detail")
-    public String boardDetail(Model model, Long idx){
+    @GetMapping("/detail/{idx}")
+    public String boardDetail(@PathVariable("idx")Long idx, Model model){
         model.addAttribute("board", qaBoardService.boardDetail(idx));
         return "/board/detail";
     }
+
+    //게시판 삭제하기
+    @GetMapping("/delete")
+    public String boardDelete(Long idx){
+        qaBoardService.boardDelete(idx);
+        return "redirect:/board/list";
+    }
+
+    //게시판 수정폼
+    @GetMapping("/modify/{idx}")
+    public String boardModify(@PathVariable("idx")Long idx,Model model){
+        model.addAttribute("board", qaBoardService.boardDetail(idx));
+        return "/board/modify";
+    }
+
+    //게시판 수정 기능
+    @PostMapping("/update/{idx}")
+    public String boardUpdate(@PathVariable("idx")Long idx, QABoard qaBoard){
+        QABoard boardTemp = qaBoardService.boardDetail(idx);
+        boardTemp.setTitle(boardTemp.getTitle());
+        boardTemp.setContent(boardTemp.getContent());
+
+        qaBoardService.write(boardTemp);
+        return "redirect:/board/list";
+    }
+
+
 
 
 }

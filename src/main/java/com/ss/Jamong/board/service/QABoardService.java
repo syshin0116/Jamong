@@ -28,7 +28,9 @@ public class QABoardService {
     public QABoard boardDetail(Long idx) {
         return boardRepository.findById(idx).get(); //Long형의 변수를 통해 불러옴. Long자료형의 id를 줌
     }
-
-
+    //게시글 삭제하기
+    public void boardDelete(Long idx) {
+        boardRepository.deleteById(idx);
+    }
 
 }

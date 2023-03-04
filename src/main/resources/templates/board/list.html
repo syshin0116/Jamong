@@ -7,46 +7,81 @@
     <meta charset="UTF-8">
     <title>게시글 리스트 페이지</title>
 </head>
-<th:block layout:fragment="css">
-    <style>
-        .layout {
-            width: 500px;
-            margin: 0 auto;
-            margin-top: 40px;
-        }
-        .title{
-            margin-top: 150px;
-            text-align: center;
-        }
-    </style>
-</th:block>
-<th:block layout:fragment="script"></th:block>
 
 <th:block layout:fragment="content">
-<!--<p style="text-align: center;">-->
-<div class="title">
-    <span style="font-size: 36px;">COMMUNITY</span>
-</p>
-</div>
-<div class="layout">
-    <table>
-        <thead>
-        <tr>
-            <th>글 번호</th>
-            <th>제목</th>
-            <a th:href="@{/board/write}"></th:href>글쓰기</a>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="board : ${list}">
-            <td th:text="${board.idx}">1</td>
-            <td>
-                <a th:text="${board.title}"
-                   th:href="@{/board/detail(idx=${board.idx})}">제목입니다.</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
+    <style>
+        .COMMUNITY {
+            margin-top: 150px;
+            margin-bottom: 30px;
+            font-size: 36px;
+            text-align: center;
+        }
+
+        .box_2 {
+            margin: 30px;
+            align-content: center;
+            text-align: center;
+        }
+
+        .btn {
+            font-size: 10px;
+            line-height: 1.6;
+            padding: 4px 15px;
+            border-radius: 50px;
+        }
+
+        .btn-outline-dark {
+            --bs-btn-hover-bg: none;
+            --bs-btn-hover-color: #212529;
+            --bs-btn-active-color: none;
+            --bs-btn-active-bg: none;
+        }
+
+        .box_1 {
+            position: relative;
+            padding: 40px 150px;
+        }
+
+        th, td {
+            font-size: 15px;
+            /* line-height: 7px;*/
+            border-width: 0;
+            border-style: solid;
+            border-color: #e5e7eb;
+            display: table-cell;
+            vertical-align: inherit;
+            font-weight: lighter;
+            text-align: inherit;
+        }
+    </style>
+    <div class="COMMUNITY">
+        COMMUNITY
+    </div>
+    <hr style="width: 80%; margin: auto; color:#e5e7eb; border-width:2px;">
+    <div class="box_1">
+        <div class="box_2">
+            <button type="button" class="btn btn-outline-dark" onclick="location.href='/board/write'">문의</button>
+        </div>
+        <table class="table">
+            <thead>
+            <tr>
+                <th width="10%">No</th>
+                <th width="80%">제목</th>
+                <th width="10%">작성자</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="board : ${list}">
+                <td th:text="${board.idx}"></td>
+                <td>
+                    <a th:text="${board.title}"
+                       th:href="@{'/board/detail/'+${board.idx}}"></a>
+                </td>
+                <td th:text="${board.writer}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    </div>
 </th:block>
 </html>

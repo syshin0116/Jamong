@@ -5,7 +5,7 @@
       layout:decorate="~{layout/layout}">
 <head>
     <meta charset="UTF-8">
-    <title>게시글 작성</title>
+    <title>게시글 수정</title>
 </head>
 
 <th:block layout:fragment="content">
@@ -16,10 +16,12 @@
             margin-bottom: 30px;
             text-align: left;
         }
+
         .mb-4 {
             margin-top: 20px;
             text-align: right;
         }
+
         .btn {
             font-size: 10px;
             line-height: 1.6;
@@ -37,18 +39,20 @@
     </style>
 
     <div class="box_write">
-        <form action="/board/writedo" method="post">
+        <form th:href="@{'/board/modify/'+${board.idx}}" method="post">
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">제목</label>
-                <input type="text" name="title" class="form-control" id="exampleFormControlInput1" placeholder="제목을입력해주세요">
+                <label for="exampleFormControlInput1" class="form-label"></label>
+                <input type="text" name="title" class="form-control" id="exampleFormControlInput1"
+                       th:value="${board.title}">
             </div>
             <br>
             <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">내용</label><br>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" name="content" placeholder="내용을입력해주세요"></textarea>
-            </div>
-            <div class="mb-4">
-            <button type="submit" class="btn btn-outline-dark">작성</button>
+                <label for="exampleFormControlTextarea1" class="form-label"></label><br>
+                <input type="text" class="form-control" id="exampleFormControlTextarea1" name="content" rows="10"
+                       th:value="${board.content}">
+                <div class="mb-4">
+                    <button type="submit" class="btn btn-outline-dark">수정</button>
+                </div>
             </div>
         </form>
     </div>
