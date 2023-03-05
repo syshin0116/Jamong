@@ -14,9 +14,26 @@
     <section class="bg-light py-5">
         <div class="container px-5 my-5 px-5">
             <div class="text-center mb-5">
-                <h2 class="fw-bolder">회원가입</h2>
+                <h2 class="fw-bolder">소셜 회원가입 & 로그인</h2>
+                <p class="lead mb-0">소셜 미디어를 선택해 주세요.</p>
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-6">
+                        <hr>
+                        <a href="/oauth2/authorization/kakao"><img th:src="@{/image/kakao_icon.png}"
+                                                                   style="width:60px;height:60px;margin: 4px; cursor: pointer;"></a>
+                        <a href="/oauth2/authorization/google"><img th:src="@{/image/google_icon.png}"
+                                                                    style="width:60px;height:60px;margin: 4px; cursor: pointer;"></a>
+                        <a href="/oauth2/authorization/naver"><img th:src="@{/image/naver_icon.png}"
+                                                                   style="width:60px;height:60px;margin: 4px; cursor: pointer;"></a>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mb-5">
+                <h2 class="fw-bolder">일반 회원가입</h2>
                 <p class="lead mb-0">회원정보 입력를 입력해 주세요.</p>
             </div>
+
             <div class="row gx-5 justify-content-center">
                 <div class="col-lg-6">
                     <form id="registerForm">
@@ -80,7 +97,7 @@
                             <input class="form-control" id="birth" name="birth" type="date"
                                    placeholder="생년월일을 입력하세요..."/>
                             <label for="birth">생년월일</label>
-<!--                            <div class="invalid-feedback" id="birthErrMsg" style="display:none;">생년월일을 입력하세요.</div> -->
+                            <!--                            <div class="invalid-feedback" id="birthErrMsg" style="display:none;">생년월일을 입력하세요.</div> -->
                         </div>
                         <div class="d-grid">
                             <button class="btn btn-primary btn-lg disabled" id="submitButton" type="button">회원가입
@@ -220,7 +237,7 @@
         $("#phone").off().on("focus", function () {
             $(this).val($(this).val().replace(/[^0-9]/g, ""));
             $("#phoneErrMsg").hide();
-        }).on("input", function() {
+        }).on("input", function () {
             // 휴대폰 형식이 안맞으면 경고문구 표시
             if ($(this).val().replace(/[^0-9]/g, "").length < 10) {
                 $("#phoneCheckForm")[0].innerHTML = "옳바르지 않은 휴대폰 번호 형식입니다.";
@@ -228,7 +245,7 @@
                 $("#phoneCheckForm").show()
                 $('#phoneErrMsg').hide();
                 chkSubmitBtn();
-            }else{
+            } else {
                 $("#phoneCheckForm")[0].innerHTML = "옳바른 휴대폰 번호 형식입니다.";
                 $("#phoneCheckForm")[0].style.color = "green";
                 $("#phoneCheckForm").show()
@@ -241,7 +258,7 @@
 
                 $(this).val("");
                 chkSubmitBtn();
-            }else{
+            } else {
                 $(this).val(fncSetPhoneFormat($(this).val()));
                 $("#phone").text($(this).val());
                 chkSubmitBtn();
@@ -309,12 +326,12 @@
             }, {});
         };
 
-    //  submit 버튼 클릭 시 post 방식, json형태로 정보 전달
-        $('#submitButton').on("click", function (){
+        //  submit 버튼 클릭 시 post 방식, json형태로 정보 전달
+        $('#submitButton').on("click", function () {
             const data = JSON.stringify(getFormJSON(formElement));
             // const registerForm = JSON.stringify(Object.fromEntries($("#registerForm").entries()));
 
-            console.log("registerForm>> "+data);
+            console.log("registerForm>> " + data);
             $.ajax({
 
                 url: "/user/register",
@@ -328,7 +345,7 @@
                     window.location.href = '/login';
                 },
                 error: function (request, status, error) {
-                    console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+                    console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
 
                 }
             });
