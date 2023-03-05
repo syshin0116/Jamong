@@ -10,15 +10,23 @@
 
 <th:block layout:fragment="content">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap');
+
         .COMMUNITY {
+            font-family: 'Noto Sans KR', sans-serif;
             margin-top: 150px;
             margin-bottom: 30px;
             font-size: 36px;
             text-align: center;
         }
 
+        .box_1 {
+            position: relative;
+            padding: 50px 230px;
+        }
+
         .box_2 {
-            margin: 30px;
+            margin-bottom: 50px;
             align-content: center;
             text-align: center;
         }
@@ -37,21 +45,27 @@
             --bs-btn-active-bg: none;
         }
 
-        .box_1 {
-            position: relative;
-            padding: 40px 150px;
+        th {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 15px;
+            border-color: #e5e7eb;
+            padding-left: 30px;
         }
 
-        th, td {
-            font-size: 15px;
-            /* line-height: 7px;*/
-            border-width: 0;
-            border-style: solid;
+        td {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-size: 13px;
             border-color: #e5e7eb;
-            display: table-cell;
-            vertical-align: inherit;
             font-weight: lighter;
-            text-align: inherit;
+            padding-left: 30px;
+        }
+        .box_3{
+            float: left;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        .box_4{
+            float: right;
+            font-family: 'Noto Sans KR', sans-serif;
         }
     </style>
     <div class="COMMUNITY">
@@ -60,28 +74,59 @@
     <hr style="width: 80%; margin: auto; color:#e5e7eb; border-width:2px;">
     <div class="box_1">
         <div class="box_2">
-            <button type="button" class="btn btn-outline-dark" onclick="location.href='/board/write'">문의</button>
+            <button type="button" class="btn btn-outline-dark" onclick="location.href='/board/write'" style="">문의
+            </button>
         </div>
+        <div class="box_3">Q&A  <span th:text="${boards.totalElements}"></span></div>
+        <div class="box_4">
+        <form class="form-inline d-flex justify-content-end" method="GET" th:action="@{/board/list}">
+            <div class="form-group mx-sm-3 mb-2">
+                <input type="text" class="form-control" id="searchText" name="searchText"
+                       th:value="${param.searchText}">
+            </div>
+            <button type="submit" class="btn btn-light mb-2">검색</button>
+        </form>
+        </div>
+        <br>
         <table class="table">
             <thead>
             <tr>
                 <th width="10%">No</th>
-                <th width="80%">제목</th>
+                <th width="70%">제목</th>
                 <th width="10%">작성자</th>
+                <th width="10%">작성날짜</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="board : ${list}">
+            <tr th:each="board : ${boards}">
                 <td th:text="${board.idx}"></td>
                 <td>
                     <a th:text="${board.title}"
                        th:href="@{'/board/detail/'+${board.idx}}"></a>
                 </td>
                 <td th:text="${board.writer}"></td>
+                <td th:text="${board.modDate}"></td>
             </tr>
             </tbody>
         </table>
     </div>
-    </div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <li class="page-item" th:classappend="${1 == boards.pageable.pageNumber + 1} ? 'disabled'">
+                <a class="page-link" href="#"
+                   th:href="@{/board/list(page=${boards.pageable.pageNumber - 1},searchText=${param.searchText})}"
+                   tabindex="-1" aria-disabled="true">Previous</a>
+            </li>
+            <li class="page-item" th:classappend="${i == boards.pageable.pageNumber + 1} ? 'disabled'"
+                th:each="i : ${#numbers.sequence(startPage, endPage)}">
+                <a class="page-link" href="#" th:href="@{/board/list(page=${i - 1},searchText=${param.searchText})}"
+                   th:text="${i}">1</a>
+            </li>
+            <li class="page-item" th:classappend="${boards.totalPages == boards.pageable.pageNumber + 1} ? 'disabled'">
+                <a class="page-link" href="#"
+                   th:href="@{/board/list(page=${boards.pageable.pageNumber + 1},searchText=${param.searchText})}">Next</a>
+            </li>
+        </ul>
+    </nav>
 </th:block>
 </html>

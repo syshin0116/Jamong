@@ -7,17 +7,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
 import java.time.LocalDate;
+
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@SequenceGenerator(name="QABOARD_SEQ_GENERATOR",
+        sequenceName="QABOARD_SEQ",
+        initialValue=1,
+        allocationSize=1)
 public class QABoard {
     @Id //PK를 의미
-    @GeneratedValue(strategy = GenerationType.AUTO) //ID값을 NULL로하면 DB가 알아서 AUTO_INCREMENT해줌
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="QABOARD_SEQ_GENERATOR")
     private Long idx; //게시판 번호
     private String title; //제목
     @Column(length=1000)

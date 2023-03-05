@@ -3,6 +3,9 @@ package com.ss.Jamong.board.service;
 import com.ss.Jamong.board.entity.QABoard;
 import com.ss.Jamong.board.repository.QABoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,9 +31,19 @@ public class QABoardService {
     public QABoard boardDetail(Long idx) {
         return boardRepository.findById(idx).get(); //Long형의 변수를 통해 불러옴. Long자료형의 id를 줌
     }
+
     //게시글 삭제하기
     public void boardDelete(Long idx) {
         boardRepository.deleteById(idx);
     }
 
+    //게시판 페이징
+    public Page<QABoard> getList(int page){
+        Pageable pageable = PageRequest.of(page, 5);
+        return this.boardRepository.findAll(pageable);
+    }
+
+    public Page<QABoard> findByTitleContainingOrContentContaining(String searchText, String searchText1, Pageable pageable) {
+        return boardRepository.findByTitleContainingOrContentContaining(searchText, searchText1, pageable);
+    }
 }
