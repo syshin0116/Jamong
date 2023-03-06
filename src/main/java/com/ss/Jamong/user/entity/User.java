@@ -3,6 +3,7 @@ package com.ss.Jamong.user.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
@@ -21,7 +22,7 @@ import java.util.List;
 @Entity
 @Builder
 @AllArgsConstructor
-public class User implements UserDetails{
+public class User{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idx;
@@ -39,7 +40,6 @@ public class User implements UserDetails{
 
     @UpdateTimestamp
     private LocalDate memModDate;
-
 
     @Enumerated(EnumType.STRING)
     private Role role; //권한(ROLE_USER, ROLE_ADMIN, ROLE_DEMO)
@@ -59,6 +59,7 @@ public class User implements UserDetails{
     // 유저 권한 설정 메소드
     public void authorizeUser() {
         this.role = Role.USER;
+        System.out.println("authorizeUser>> Guest->User");
     }
 
     // 비밀번호 암호화 메소드
@@ -66,42 +67,37 @@ public class User implements UserDetails{
         this.password = passwordEncoder.encode(this.password);
     }
 
+    //== 유저 필드 업데이트 ==//
+    public void updateNickname(String updateNickname) {
+        this.nickname = updateNickname;
+    }
+
+    public void updateImageUrl(String updateImageUrl) {
+        this.imageUrl = updateImageUrl;
+    }
+
+    public void updateEmail(String updateEmail) {
+        this.email = updateEmail;
+    }
+
+    public void updatePhone(String updatePhone) {
+        this.phone = updatePhone;
+    }
+
+    public void updateBirth(Date updateBirth){
+        this.birth = updateBirth;
+    }
+
+    public void updateAddr(String updateAddr){
+        this.addr = updateAddr;
+    }
+
+    public void updatePassword(String updatePassword, PasswordEncoder passwordEncoder) {
+        this.password = passwordEncoder.encode(updatePassword);
+    }
+
     public void updateRefreshToken(String updateRefreshToken) {
         this.refreshToken = updateRefreshToken;
     }
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return username;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
 }

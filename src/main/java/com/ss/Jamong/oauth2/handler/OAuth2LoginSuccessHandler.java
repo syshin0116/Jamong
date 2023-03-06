@@ -35,13 +35,15 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
             if(oAuth2User.getRole() == Role.GUEST) {
                 String accessToken = jwtService.createAccessToken(oAuth2User.getUsername());
                 response.addHeader(jwtService.getAccessHeader(), "Bearer " + accessToken);
-                response.sendRedirect("oauth2/register"); // 프론트의 회원가입 추가 정보 입력 폼으로 리다이렉트
+                response.sendRedirect("/"); // 프론트의 회원가입 추가 정보 입력 폼으로 리다이렉트
 
                 jwtService.sendAccessAndRefreshToken(response, accessToken, null);
-
+                //Role을 GUEST -> USER로 업데이트
+                log.info("oAuth2User.getUsername >> "+oAuth2User.getUsername());
                 User findUser = userRepository.findByUsername(oAuth2User.getUsername())
                                 .orElseThrow(() -> new IllegalArgumentException("username에 해당하는 유저가 없습니다."));
                 findUser.authorizeUser();
+                userRepository.save(findUser);
 
 //                주석 처리한 부분 - Role을 GUEST -> USER로 업데이트하는 로직입니다.
 //                지금은 회원가입 추가 폼 입력 시 업데이트하는 컨트롤러를 만들지 않아서 저렇게 놔뒀습니다.

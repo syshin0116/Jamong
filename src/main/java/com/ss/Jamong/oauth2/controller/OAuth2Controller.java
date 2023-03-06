@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/oauth")
+@RequestMapping("/oauth2")
 public class OAuth2Controller {
     @RequestMapping("/register")
     public String register(){
