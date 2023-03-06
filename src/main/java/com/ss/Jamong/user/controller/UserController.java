@@ -24,6 +24,7 @@ public class UserController {
     /*회원가입 페이지로 이동*/
     @GetMapping("/register")
     public String register() {
+        log.info("UserController>>register 호출");
         return "user/register";
     }
 
