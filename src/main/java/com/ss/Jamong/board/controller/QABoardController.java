@@ -5,6 +5,7 @@ import com.ss.Jamong.board.service.QABoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,18 +34,10 @@ public class QABoardController {
         return "redirect:/board/list";
     }
 
-    //게시판 리스트 띄우기
-//    @GetMapping("/list/{page}")
-//    public String boardlist(Model model, @RequestParam(value="page", defaultValue = "0")int page){
-//        Page<QABoard> paging = this.qaBoardService.getList(page);
-//        model.addAttribute("paging", paging);
-//        model.addAttribute("list", qaBoardService.boardlist());
-//        return "/board/list";
-//    }
+    //리스트, 페이지 검색 및 페이징
     @GetMapping("/list")
-    public String list(Model model, @PageableDefault(size = 5) Pageable pageable,
+    public String list(Model model, @PageableDefault(size = 5, sort = "idx", direction = Sort.Direction.DESC) Pageable pageable,
                        @RequestParam(required = false, defaultValue = "") String searchText) {
-//        Page<Board> boards = boardRepository.findAll(pageable);
         Page<QABoard> boards = qaBoardService.findByTitleContainingOrContentContaining(searchText, searchText, pageable);
         int startPage = Math.max(1, boards.getPageable().getPageNumber() - 4);
         int endPage = Math.min(boards.getTotalPages(), boards.getPageable().getPageNumber() + 4);
@@ -86,11 +79,8 @@ public class QABoardController {
         qaBoardService.write(qaBoard); //자꾸 boardTemp에 안들어가길래 한번 더 적어줬더니 수정이 됨
         qaBoardService.write(boardTemp); //작성된 제목과 내용을 write에 덮어씌워줌
 
-        System.out.println("--------------" + boardTemp);
         return "redirect:/board/list";
     }
-
-    //게시판 페이징
 
 
 }

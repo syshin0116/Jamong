@@ -10,19 +10,18 @@
 
 <th:block layout:fragment="content">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap');
+
         .box_write {
             position: relative;
-            padding: 150px 150px;
-            margin-bottom: 30px;
+            margin: 30px 150px 100px 150px;
             text-align: left;
+            font-family: 'Noto Sans KR', bold, sans-serif;
         }
-        .mb-4 {
-            margin-top: 20px;
-            text-align: right;
-        }
+
         .btn {
-            font-size: 10px;
-            line-height: 1.6;
+            font-size: 13px;
+            line-height: 1.7;
             padding: 4px 15px;
             border-radius: 50px;
         }
@@ -34,23 +33,54 @@
             --bs-btn-active-bg: none;
         }
 
-    </style>
+        .headerLine1 {
+            padding: 50px;
+            margin-left: 100px;
+            font-family: 'Noto Sans KR', sans-serif;
+            float: left;
+        }
 
-    <div class="box_write">
-        <form action="/board/writedo" method="post">
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">제목</label>
-                <input type="text" name="title" class="form-control" id="exampleFormControlInput1" placeholder="제목을입력해주세요">
-            </div>
-            <br>
-            <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">내용</label><br>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" name="content" placeholder="내용을입력해주세요"></textarea>
-            </div>
-            <div class="mb-4">
-            <button type="submit" class="btn btn-outline-dark">작성</button>
-            </div>
-        </form>
+        .headerLine2 {
+            padding: 50px;
+            margin-top: 10px;
+            margin-right: 100px;
+            font-family: 'Noto Sans KR', sans-serif;
+            float: right;
+        }
+
+        textarea {
+            resize: none;
+            border: #ffffff;
+        }
+
+        textarea:focus {
+            outline: none;
+        }
+
+        input {
+            border: #ffffff;
+        }
+
+        input:focus {
+            outline: none;
+        }
+
+    </style>
+    <div class="headerLine1">
+        <h2>문의</h2>
     </div>
+    <form action="/board/writedo" method="post">
+        <div class="headerLine2">
+            <button type="submit" class="btn btn-outline-dark">작성</button>
+        </div>
+        <!--    <hr style="width: 100%; color:#3d3d3d; border-top: #212529 solid 2px;">-->
+        <div class="box_write">
+            <input type="text" name="title" id="exampleFormControlInput1" placeholder="제목" size=164 maxlength=100>
+            <hr style="width: 100%; color:#212529;">
+            <br>
+            <textarea id="exampleFormControlTextarea1" rows="10" cols="170" name="content"
+                      placeholder="내용을입력해주세요"></textarea>
+        </div>
+    </form>
 </th:block>
 </html>

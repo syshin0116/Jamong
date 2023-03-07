@@ -37,13 +37,10 @@ public class QABoardService {
         boardRepository.deleteById(idx);
     }
 
-    //게시판 페이징
-    public Page<QABoard> getList(int page){
-        Pageable pageable = PageRequest.of(page, 5);
-        return this.boardRepository.findAll(pageable);
-    }
-
+    //페이지 검색 및 페이징
     public Page<QABoard> findByTitleContainingOrContentContaining(String searchText, String searchText1, Pageable pageable) {
         return boardRepository.findByTitleContainingOrContentContaining(searchText, searchText1, pageable);
     }
+
+
 }
