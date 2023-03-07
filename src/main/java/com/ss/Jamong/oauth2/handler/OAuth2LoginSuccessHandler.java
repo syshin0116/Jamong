@@ -43,7 +43,7 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
                 User findUser = userRepository.findByUsername(oAuth2User.getUsername())
                                 .orElseThrow(() -> new IllegalArgumentException("username에 해당하는 유저가 없습니다."));
                 findUser.authorizeUser();
-                userRepository.save(findUser);
+//                userRepository.save(findUser);
 
 //                주석 처리한 부분 - Role을 GUEST -> USER로 업데이트하는 로직입니다.
 //                지금은 회원가입 추가 폼 입력 시 업데이트하는 컨트롤러를 만들지 않아서 저렇게 놔뒀습니다.
@@ -55,7 +55,6 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
         } catch (Exception e) {
             throw e;
         }
-
     }
 
     // TODO : 소셜 로그인 시에도 무조건 토큰 생성하지 말고 JWT 인증 필터처럼 RefreshToken 유/무에 따라 다르게 처리해보기
@@ -67,5 +66,8 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
 
         jwtService.sendAccessAndRefreshToken(response, accessToken, refreshToken);
         jwtService.updateRefreshToken(oAuth2User.getUsername(), refreshToken);
+        log.info("loginSuccess!! response:"+response);
+        log.info("loginSuccess!! AccessToken:"+accessToken);
+        log.info("loginSuccess!! RefreshToken:"+refreshToken);
     }
 }

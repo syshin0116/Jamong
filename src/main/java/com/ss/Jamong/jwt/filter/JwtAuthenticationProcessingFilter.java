@@ -121,7 +121,6 @@ public class JwtAuthenticationProcessingFilter extends OncePerRequestFilter {
                                 .ifPresent(this::saveAuthentication)));
 
         filterChain.doFilter(request, response);
-        log.info("doFilter 완료");
     }
 
     /**
