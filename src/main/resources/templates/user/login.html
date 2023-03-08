@@ -22,8 +22,6 @@
         margin: 4px;
         cursor: pointer;
     }
-
-
 </style>
 <th:block layout:fragment="content">
     <section class="bg-light py-5 text-center">
@@ -85,8 +83,10 @@
                 </div>
             </div>
         </div>
+
     </section>
     <script>
+
 
         $("#username, #password").off().on("focus", function () {
 
@@ -139,7 +139,7 @@
 
             console.log(data);
             $.ajax({
-                url: "/api/v1/auth/authenticate",
+                url: "/login",
                 type: "post",
                 contentType: "application/json; charset=utf-8",
                 data: data,

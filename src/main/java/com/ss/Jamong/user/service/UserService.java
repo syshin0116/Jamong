@@ -53,4 +53,8 @@ public class UserService {
         return userRepository.existsByUsername(username);
     }
 
+    public boolean nicknameCheck(String nickname){
+        return userRepository.existsByNickname(nickname);
+    }
+
 }
