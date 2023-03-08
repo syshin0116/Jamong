@@ -21,6 +21,14 @@ public class UserRestController {
         Boolean checkResult = userService.idCheck(username);
         return checkResult;
     }
+
+    /*닉네임 중복체크*/
+    @PostMapping("/nicknameCheck")
+    public Boolean nicknameCheck(@RequestParam String nickname){
+        Boolean checkResult = userService.nicknameCheck(nickname);
+        return checkResult;
+    }
+
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody UserRegisterRequest userRegisterRequest)throws Exception{
         userService.register(userRegisterRequest);
