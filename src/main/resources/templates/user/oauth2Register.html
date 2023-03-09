@@ -109,7 +109,7 @@
 
             let _id = $(this).attr('id')
             $("#" + _id + "ErrMsg").hide();
-            $(this).removeClass('is-invalid');
+            // $(this).removeClass('is-invalid');
             if (_id == "nickname") {
                 IS_NICKNAME_CHK = false;
                 $("#submitButton").addClass("disabled");
@@ -137,13 +137,13 @@
                             $("#nicknameCheck")[0].innerHTML = "사용 가능한 닉네임 입니다.";
                             $("#nicknameCheck")[0].style.color = "green";
                             $("#nicknameCheck").show();
-                            $(this).removeClass('is-invalid');
+                            // $(this).removeClass('is-invalid');
                         } else {
                             IS_NICKNAME_CHK = false;
                             $("#nicknameCheck")[0].innerHTML = "이미 사용중인 닉네임 입니다.";
                             $("#nicknameCheck")[0].style.color = "red";
                             $("#nicknameCheck").show();
-                            $(this).addClass('is-invalid');
+                            // $(this).addClass('is-invalid');
                         }
                     },
                     error: function () {

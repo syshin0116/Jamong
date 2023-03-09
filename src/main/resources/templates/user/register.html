@@ -126,7 +126,7 @@
             let _value = $(this).val();
             $("#" + _id + "ErrMsg").hide();
             if ($.trim(_value) == "") {
-                $("#username").addClass('is-invalid');
+                // $("#username").addClass('is-invalid');
                 $("#usernameErrMsg").show();
                 $("#usernameCheck").hide();
                 chkSubmitBtn();
@@ -145,14 +145,13 @@
                             $("#usernameCheck")[0].innerHTML = "사용 가능한 아이디 입니다.";
                             $("#usernameCheck")[0].style.color = "green";
                             $("#usernameCheck").show();
-                            $("#username").removeClass('is-invalid');
+                            // $("#username").removeClass('is-invalid');
                         } else {
                             IS_ID_CHK = false;
                             $("#usernameCheck")[0].innerHTML = "이미 사용중인 아이디 입니다.";
                             $("#usernameCheck")[0].style.color = "red";
                             $("#usernameCheck").show();
-                            $("#username").addClass('is-invalid');
-
+                            // $("#username").addClass('is-invalid');
                         }
                     },
                     error: function () {
