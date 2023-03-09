@@ -62,6 +62,35 @@
                             <label for="birth">생년월일</label>
                             <!--                            <div class="invalid-feedback" id="birthErrMsg" style="display:none;">생년월일을 입력하세요.</div> -->
                         </div>
+                        <!-- 주소 input-->
+                        <div class="input-group form-floating">
+                            <input type="text" class="form-control" id="sample6_postcode" name="sample6_postcode"
+                                   placeholder="우편번호를 입력하세요...">
+                            <label for="sample6_postcode">우편번호</label>
+                            <button class="btn btn-secondary" type="button" id="button-addon2"
+                                    onclick="sample6_execDaumPostcode()">우편번호 찾기
+                            </button>
+                        </div>
+                        <!--                            <div class="col-xs-2">-->
+                        <!--                                <input class="form-control" type="text" id="sample6_postcode" placeholder="우편번호를 입력하세요...">-->
+                        <!--                                <label for="sample6_postcode">우편번호</label>-->
+
+                        <!--                                <input class="form-control" type="button" onclick="sample6_execDaumPostcode()"-->
+                        <!--                                       value="우편번호 찾기"><br>-->
+                        <!--                            </div>-->
+                        <div class="form-floating mb-0">
+                            <input class="form-control" type="text" id="sample6_address" placeholder="주소">
+                            <label for="sample6_address">주소</label>
+                        </div>
+                        <div class="form-floating mb-0">
+                        <input class="form-control" type="text" id="sample6_detailAddress" placeholder="상세주소">
+                        <label for="sample6_detailAddress">상세주소</label>
+                        </div>
+
+                        <div class="col-xs-2">
+                            <input class="form-control" type="text" id="sample6_extraAddress" placeholder="참고항목">
+                        </div>
+
                         <div class="d-grid">
                             <button class="btn btn-primary btn-lg disabled" id="submitButton" type="button">회원가입
                             </button>
@@ -80,6 +109,7 @@
 
             let _id = $(this).attr('id')
             $("#" + _id + "ErrMsg").hide();
+            // $(this).removeClass('is-invalid');
             if (_id == "nickname") {
                 IS_NICKNAME_CHK = false;
                 $("#submitButton").addClass("disabled");
@@ -107,11 +137,13 @@
                             $("#nicknameCheck")[0].innerHTML = "사용 가능한 닉네임 입니다.";
                             $("#nicknameCheck")[0].style.color = "green";
                             $("#nicknameCheck").show();
+                            // $(this).removeClass('is-invalid');
                         } else {
                             IS_NICKNAME_CHK = false;
                             $("#nicknameCheck")[0].innerHTML = "이미 사용중인 닉네임 입니다.";
                             $("#nicknameCheck")[0].style.color = "red";
                             $("#nicknameCheck").show();
+                            // $(this).addClass('is-invalid');
                         }
                     },
                     error: function () {
