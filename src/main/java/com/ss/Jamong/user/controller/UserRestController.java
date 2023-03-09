@@ -16,9 +16,9 @@ public class UserRestController {
     private final UserService userService;
 
     /*아이디 중복체크*/
-    @PostMapping("/idCheck")
+    @PostMapping("/usernameCheck")
     public Boolean idCheck(@RequestParam String username){
-        Boolean checkResult = userService.idCheck(username);
+        Boolean checkResult = userService.usernameCheck(username);
         return checkResult;
     }
 
