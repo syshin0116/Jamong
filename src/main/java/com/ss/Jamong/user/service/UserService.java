@@ -38,6 +38,7 @@ public class UserService {
                 .username(userRegisterRequest.getUsername())
                 .password(passwordEncoder.encode(userRegisterRequest.getPassword()))
                 .email(userRegisterRequest.getEmail())
+                .postcode(userRegisterRequest.getPostcode())
                 .address(userRegisterRequest.getAddress())
                 .detailAddress((userRegisterRequest.getDetailAddress()))
                 .birth(userRegisterRequest.getBirth())
