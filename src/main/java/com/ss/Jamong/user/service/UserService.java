@@ -49,7 +49,7 @@ public class UserService {
     }
 
     //id 중복 검사
-    public boolean idCheck(String username) {
+    public boolean usernameCheck(String username) {
         return userRepository.existsByUsername(username);
     }
 
