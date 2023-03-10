@@ -32,7 +32,8 @@ public class User{
     private String imageUrl; // 프로필 이미지
     private String phone; // 연락처
     private String email; // 이메일
-    private String addr; // 주소
+    private String address; // 주소
+    private String detailAddress; //상세주소
     private Date birth; // 생년월일
 
     @CreationTimestamp
@@ -88,9 +89,11 @@ public class User{
         this.birth = updateBirth;
     }
 
-    public void updateAddr(String updateAddr){
-        this.addr = updateAddr;
+    public void updateAddress(String updateAddress){
+        this.address = updateAddress;
     }
+
+    public void updateDetailAddress(String updateDetailAddress){this.detailAddress = updateDetailAddress;}
 
     public void updatePassword(String updatePassword, PasswordEncoder passwordEncoder) {
         this.password = passwordEncoder.encode(updatePassword);

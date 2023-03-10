@@ -35,6 +35,12 @@ public class UserRestController {
         return ResponseEntity.ok("회원가입 성공");
     }
 
+    @PostMapping("/oauth2Register")
+    public ResponseEntity<String> oauth2Register(@RequestBody UserRegisterRequest userRegisterRequest)throws Exception{
+        userService.register(userRegisterRequest);
+        return ResponseEntity.ok("회원가입 성공");
+    }
+
     @GetMapping("/jwt-test")
     public String jwtTest(){
         return "jwtTest 요청 성공";

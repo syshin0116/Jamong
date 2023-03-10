@@ -28,7 +28,7 @@ public class UserController {
         return "user/register";
     }
 
-    @GetMapping("/oauth2/register")
+    @GetMapping("/oauth2Register")
     public String auth2Register(){
         return "user/oauth2Register";
     }
