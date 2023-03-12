@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 
 import java.sql.Date;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Data
 @Builder
 public class UserRegisterRequest {

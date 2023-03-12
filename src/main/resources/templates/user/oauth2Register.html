@@ -38,8 +38,7 @@
                                    placeholder="name@example.com"/>
                             <label for="email">이메일 주소</label>
                             <div class="invalid-feedback" id="emailErrMsg" style="display:none;">메일주소를 입력하세요.</div>
-                            <div class="invalid-feedback" id="emailNotPattern" style="display:none;">이메일 형식이 아닙니다.
-                            </div>
+                            <div class="valid-feedback" id="emailCheckForm" style="display:none;"></div>
                         </div>
                         <!-- 핸드폰번호 input-->
                         <div class="form-floating mb-3">
@@ -95,10 +94,10 @@
     </section>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
-        //아이디 중복체크 여부
+        //닉네임 중복체크 여부
         let IS_NICKNAME_CHK = false;
 
-        //아이디 중복체크, 입력 감지 이벤트
+        //닉네임 중복체크, 입력 감지 이벤트
         $("#nickname").on("focus", function () {
 
             let _id = $(this).attr('id')
@@ -112,7 +111,7 @@
             let _id = $(this).attr('id')
             let _value = $(this).val();
             $("#" + _id + "ErrMsg").hide();
-            if ($.trim(_value) == "") {
+            if ($.trim(_value) === "") {
                 $("#nicknameErrMsg").show();
                 $("#nicknameCheck").hide();
                 chkSubmitBtn();
@@ -159,17 +158,30 @@
 
         //이메일 입력 감지 이벤트
         $("#email").on("focus", function () {
-            $("#emailErrMsg, #emailNotPattern").hide();
+            $("#emailErrMsg, #emailCheckForm").hide();
+
+        }).on("input", function () {
+            // 이메일을 형식이 안맞으면 경고문구 표시
+            let _id = $(this).attr('id')
+            let _value = $(this).val();
+            if (!isValidEMail($.trim(_value))) {
+                $("#emailCheckForm")[0].innerHTML = "옳바른 이메일 형식이 아닙니다.";
+                $("#emailCheckForm")[0].style.color = "red";
+                $("#emailCheckForm").show()
+                $('#emailErrMsg').hide();
+                return false;
+            } else {
+                $("#emailCheckForm")[0].innerHTML = "옳바른 이메일 형식입니다.";
+                $("#emailCheckForm")[0].style.color = "green";
+                $("#emailCheckForm").show()
+                chkSubmitBtn();
+            }
         }).on("blur", function () {
             //이메일을 입력안하면 경고문구 표시
             let _value = $(this).val();
-            if ($.trim(_value) == "") {
+            if ($.trim(_value) === "") {
                 $("#emailErrMsg").show();
-                return false;
-            }
-            //이메일을 형식이 안맞으면 경고문구 표시
-            if (!isValidEMail($.trim(_value))) {
-                $("#emailNotPattern").show();
+                $("#emailCheckForm").hide();
                 return false;
             }
             chkSubmitBtn();
@@ -186,15 +198,17 @@
                 $("#phoneCheckForm")[0].style.color = "red";
                 $("#phoneCheckForm").show()
                 $('#phoneErrMsg').hide();
-                chkSubmitBtn();
+                return false;
             } else {
                 $("#phoneCheckForm")[0].innerHTML = "옳바른 휴대폰 번호 형식입니다.";
                 $("#phoneCheckForm")[0].style.color = "green";
                 $("#phoneCheckForm").show()
+                chkSubmitBtn();
+
             }
         }).on("blur", function () {
             // 휴대폰을 입력안하면 경고문구 표시
-            if ($.trim($(this).val()) == "") {
+            if ($.trim($(this).val()) === "") {
                 $('#phoneErrMsg').show();
                 $("#phoneCheckForm").hide();
 
@@ -213,7 +227,7 @@
             let flag = true;
 
             $("#nickname, #phone, #email").each(function (index, item) {
-                if ($.trim($(this).val()) == "") {
+                if ($.trim($(this).val()) === "") {
                     flag = false;
                 }
             });

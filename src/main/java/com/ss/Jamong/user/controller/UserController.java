@@ -4,8 +4,12 @@ package com.ss.Jamong.user.controller;
 import com.ss.Jamong.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
 
 @Slf4j
 @Controller
@@ -18,7 +22,19 @@ public class UserController {
     /*로그인 페이지로 이동*/
     @GetMapping("/login")
     public String login() {
+        if (isAuthenticated()) {
+            return "redirect:main/main";
+        }
         return "user/login";
+    }
+
+    private boolean isAuthenticated() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || AnonymousAuthenticationToken.class.
+                isAssignableFrom(authentication.getClass())) {
+            return false;
+        }
+        return authentication.isAuthenticated();
     }
 
     /*회원가입 페이지로 이동*/
@@ -32,7 +48,4 @@ public class UserController {
     public String auth2Register(){
         return "user/oauth2Register";
     }
-
-
-
 }

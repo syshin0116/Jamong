@@ -88,18 +88,20 @@
     <script>
 
 
-        $("#username, #password").off().on("focus", function () {
+        $("#username, #password").on("focus", function () {
 
             let _id = $(this).attr('id')
             $("#" + _id + "ErrMsg").hide();
 
-        }).on("blur", function () {
+        }).on("input", function () {
 
             let _id = $(this).attr('id')
             let _value = $(this).val();
 
-            if ($.trim(_value) == "") {
+            if ($.trim(_value) === "") {
                 $("#" + _id + "ErrMsg").show();
+            }else{
+                $("#" + _id + "ErrMsg").hide();
             }
             chkSubmitBtn();
         });
@@ -109,7 +111,7 @@
             let flag = true;
 
             $("input").each(function (index, item) {
-                if ($.trim($(this).val()) == "") {
+                if ($.trim($(this).val()) === "") {
                     flag = false;
                 }
             });
@@ -141,13 +143,12 @@
             $.ajax({
                 url: "/login",
                 type: "post",
-                contentType: "application/json; charset=utf-8",
+                contentType: "application/json",
                 data: data,
-                dataType: 'json',
+                dataType: "text",
                 success: function (data) {
-                    alert("success");
                     console.log(data);
-                    window.location.href = '/';
+                    window.location.href = "/";
                 },
                 error: function (request, status, error) {
                     console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
