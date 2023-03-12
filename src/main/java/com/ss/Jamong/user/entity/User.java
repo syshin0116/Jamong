@@ -1,6 +1,7 @@
 package com.ss.Jamong.user.entity;
 
 
+import com.ss.Jamong.board.entity.QABoard;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +12,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Getter
@@ -29,7 +32,6 @@ public class User{
     private String imageUrl; // 프로필 이미지
     private String phone; // 연락처
     private String email; // 이메일
-
     private String postcode; // 우편번호
     private String address; // 주소
     private String detailAddress; //상세주소
@@ -50,8 +52,8 @@ public class User{
     private String socialId; // 로그인한 소셜 타입의 식별자 값(일반 로그인인 경우 null)
 
     private String refreshToken; // JWT refresh Token
-//    @OneToMany(mappedBy="user")
-//    private List<Board> boards = new ArrayList<>();
+    @OneToMany(mappedBy = "idx")
+    private List<QABoard> boards = new ArrayList<>();
 //
 //    @OneToMany(mappedBy="user")
 //    private List<Dog> dogs = new ArrayList<>();
