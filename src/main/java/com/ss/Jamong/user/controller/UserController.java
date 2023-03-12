@@ -32,7 +32,4 @@ public class UserController {
     public String auth2Register(){
         return "user/oauth2Register";
     }
-
-
-
 }

@@ -93,7 +93,7 @@
             let _id = $(this).attr('id')
             $("#" + _id + "ErrMsg").hide();
 
-        }).on("blur", function () {
+        }).on("input", function () {
 
             let _id = $(this).attr('id')
             let _value = $(this).val();
@@ -141,13 +141,13 @@
             $.ajax({
                 url: "/login",
                 type: "post",
-                contentType: "application/json; charset=utf-8",
+                contentType: "application/json",
                 data: data,
-                dataType: 'json',
+                dataType: "json",
                 success: function (data) {
                     alert("success");
                     console.log(data);
-                    window.location.href = '/';
+                    window.location.href = "/";
                 },
                 error: function (request, status, error) {
                     console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);

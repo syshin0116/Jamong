@@ -38,10 +38,10 @@ public class User{
     private Date birth; // 생년월일
 
     @CreationTimestamp
-    private LocalDate regDate;
+    private LocalDate regDate; // 가입 날짜
 
     @UpdateTimestamp
-    private LocalDate memModDate;
+    private LocalDate memModDate; // 수정 날짜
 
     @Enumerated(EnumType.STRING)
     private Role role; //권한(ROLE_USER, ROLE_ADMIN, ROLE_DEMO)
@@ -52,11 +52,10 @@ public class User{
     private String socialId; // 로그인한 소셜 타입의 식별자 값(일반 로그인인 경우 null)
 
     private String refreshToken; // JWT refresh Token
-    @OneToMany(mappedBy = "idx")
-    private List<QABoard> boards = new ArrayList<>();
-//
-//    @OneToMany(mappedBy="user")
-//    private List<Dog> dogs = new ArrayList<>();
+
+    @OneToMany
+    private List<QABoard> boards = new ArrayList<>(); // 작성한 게시글
+
 
     // 유저 권한 설정 메소드
     public void authorizeUser() {
