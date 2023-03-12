@@ -18,6 +18,7 @@ public class UserRegisterRequest {
     private String imageUrl; // 프로필 이미지
     private String phone; // 연락처
     private String email; // 이메일
+    private String postcode; // 우편번호
     private String address; // 주소
     private String detailAddress; // 상세주소
 
