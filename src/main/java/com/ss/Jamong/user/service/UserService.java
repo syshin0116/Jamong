@@ -6,6 +6,7 @@ import com.ss.Jamong.user.entity.User;
 import com.ss.Jamong.user.entity.UserRegisterRequest;
 import com.ss.Jamong.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
+@Slf4j
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -48,6 +50,7 @@ public class UserService {
         .build();
 
         userRepository.save(user);
+        log.info("user registered"+user);
     }
 
     /*아이디 중복 검사*/

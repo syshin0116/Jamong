@@ -88,7 +88,7 @@
     <script>
 
 
-        $("#username, #password").off().on("focus", function () {
+        $("#username, #password").on("focus", function () {
 
             let _id = $(this).attr('id')
             $("#" + _id + "ErrMsg").hide();
@@ -98,8 +98,10 @@
             let _id = $(this).attr('id')
             let _value = $(this).val();
 
-            if ($.trim(_value) == "") {
+            if ($.trim(_value) === "") {
                 $("#" + _id + "ErrMsg").show();
+            }else{
+                $("#" + _id + "ErrMsg").hide();
             }
             chkSubmitBtn();
         });
@@ -109,7 +111,7 @@
             let flag = true;
 
             $("input").each(function (index, item) {
-                if ($.trim($(this).val()) == "") {
+                if ($.trim($(this).val()) === "") {
                     flag = false;
                 }
             });
@@ -146,7 +148,7 @@
                 dataType: "text",
                 success: function (data) {
                     console.log(data);
-                    // window.location.href = "/";
+                    window.location.href = "/";
                 },
                 error: function (request, status, error) {
                     console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
