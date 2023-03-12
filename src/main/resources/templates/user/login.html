@@ -143,11 +143,10 @@
                 type: "post",
                 contentType: "application/json",
                 data: data,
-                dataType: "json",
+                dataType: "text",
                 success: function (data) {
-                    alert("success");
                     console.log(data);
-                    window.location.href = "/";
+                    // window.location.href = "/";
                 },
                 error: function (request, status, error) {
                     console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
