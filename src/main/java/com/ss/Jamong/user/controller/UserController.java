@@ -3,13 +3,17 @@ package com.ss.Jamong.user.controller;
 
 import com.ss.Jamong.user.service.UserService;
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwt;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.http.parser.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
+import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -53,9 +57,9 @@ public class UserController {
     }
 
     @GetMapping("/jwt-test")
-    public ResponseEntity<String> jwttest(Authentication authentication){
+    public ResponseEntity<String> jwttest(Authentication authentication, @AuthenticationPrincipal Jwt jwt){
         String username = authentication.getPrincipal().toString();
         System.out.println("username: " + username);
-        return ResponseEntity.ok("jwt-test 성공 \n username:" + username);
+        return ResponseEntity.ok("jwt-test 성공 \n username:" + username + "\njwt:"+ jwt);
     }
 }
