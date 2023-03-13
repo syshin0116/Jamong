@@ -2,8 +2,11 @@ package com.ss.Jamong.user.controller;
 
 
 import com.ss.Jamong.user.service.UserService;
+import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.tomcat.util.http.parser.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -47,5 +50,12 @@ public class UserController {
     @GetMapping("/oauth2Register")
     public String auth2Register(){
         return "user/oauth2Register";
+    }
+
+    @GetMapping("/jwt-test")
+    public ResponseEntity<String> jwttest(Authentication authentication){
+        String username = authentication.getPrincipal().toString();
+        System.out.println("username: " + username);
+        return ResponseEntity.ok("jwt-test 성공 \n username:" + username);
     }
 }
