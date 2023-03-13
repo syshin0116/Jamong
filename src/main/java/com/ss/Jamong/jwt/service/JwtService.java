@@ -45,6 +45,8 @@ public class JwtService {
     private static final String ACCESS_TOKEN_SUBJECT = "AccessToken";
     private static final String REFRESH_TOKEN_SUBJECT = "RefreshToken";
     private static final String USERNAME_CLAIM = "username";
+
+    private static final String NICKNAME_CLAIM = "nickname";
     private static final String BEARER = "Bearer ";
 
     private final UserRepository userRepository;
@@ -62,6 +64,7 @@ public class JwtService {
                 //추가적으로 식별자나, 이름 등의 정보를 더 추가하셔도 됩니다.
                 //추가하실 경우 .withClaim(클래임 이름, 클래임 값) 으로 설정해주시면 됩니다
                 .withClaim(USERNAME_CLAIM, username)
+//                .withClaim(NICKNAME_CLAIM, nickname)
                 .sign(Algorithm.HMAC512(secretKey)); // HMAC512 알고리즘 사용, application-jwt.yml에서 지정한 secret 키로 암호화
     }
 

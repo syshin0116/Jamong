@@ -146,9 +146,13 @@
                 contentType: "application/json",
                 data: data,
                 dataType: "text",
-                success: function (data) {
+                success: function (data, textStatus, request) {
                     console.log(data);
-                    window.location.href = "/";
+                    console.log(textStatus);
+                    console.log("Authorization:"+request.getResponseHeader('Authorization'));
+                    console.log("Authorization-refresh:"+request.getResponseHeader('Authorization-refresh'));
+
+                    // window.location.href = "/";
                 },
                 error: function (request, status, error) {
                     console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
