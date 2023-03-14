@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -155,8 +156,18 @@ public class JwtService {
      * RefreshToken 헤더 설정
      */
     public void setRefreshTokenHeader(HttpServletResponse response, String refreshToken) {
+//        ResponseCookie cookie = ResponseCookie.from("refreshToken", refreshToken)
+//                .maxAge(14 * 24 * 60 * 60)
+//                .path("/")
+//                .secure(true)
+//                .sameSite("None")
+//                .httpOnly(true)
+//                .build();
+//        response.setHeader("Set-Cookie", cookie.toString());
+//        헤더 설정을 해줄 때 set-cookie 설정을 해주는 것
         response.setHeader(refreshHeader, refreshToken);
     }
+
 
     /**
      * RefreshToken DB 저장(업데이트)
