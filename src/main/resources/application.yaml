@@ -1,57 +1,63 @@
 #server
 server:
-    address: localhost
-    port: 8080
+  address: localhost
+  port: 8080
 
 # Log
 logging:
-    level:
-        com:
-            spring: DEBUG
-        org:
-            hibernate:
-                type:
-                    descriptor:
-                        sql:
-                            BasicBinder: TRACE
-                SQL: DEBUG
-        root: info
+  level:
+    com:
+      spring: DEBUG
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+        SQL: DEBUG
+    root: info
 
 spring:
-    jpa:
-        database: mysql
-        show-sql: 'true'
-        hibernate:
-            ddl-auto: update
-        properties:
-            hibernate:
-                format_sql: 'true'
-    devtools:
-        restart:
-            enabled: 'true'
-        livereload:
-            enabled: 'true'
-    security:
-        # Spring Security default user, password
-        user:
-            password: '1234'
-            name: user
-    #Mysql
-    datasource:
-        username: Jamong
-        password: Jamong
-        driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/Jamong?useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
-    # Thymeleaf
-    thymeleaf:
-        cache: false
+  jpa:
+    database: mysql
+    show-sql: 'true'
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: 'true'
+  devtools:
+    restart:
+      enabled: 'true'
+    livereload:
+      enabled: 'true'
+  security:
+    # Spring Security default user, password
+    user:
+      password: '1234'
+      name: user
+  #Mysql
+  datasource:
+    username: Jamong
+    password: Jamong
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/Jamong?useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
+  # Thymeleaf
+  thymeleaf:
+    cache: false
 
-    profiles:
-        group:
-            "local" : "local, jwt, oauth"
-        active : local
+  profiles:
+    group:
+      "local": "local, jwt, oauth"
+    active: local
+
+upload:
+  path: '/src/main/resources/static/image/upload-images'
 ---
 spring:
-    config:
-        activate:
-            on-profile: "local"
+  config:
+    activate:
+      on-profile: "local"
+#
+#upload:
+#  path: '/src/main/resources/static/image/upload-images'

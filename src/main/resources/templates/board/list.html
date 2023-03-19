@@ -97,6 +97,10 @@
         .page-link {
             color: gray;
             }
+        a {
+            text-decoration-line: none;
+            color: black;
+        }
 
     </style>
     <div class="container px-5 my-5 px-5">
@@ -133,7 +137,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="board : ${boards}">
+                <tr th:each="board : ${boards}" style="a:link black; text-decoration: none;">
                     <td th:text="${board.idx}"></td>
                     <td>
                         <a th:text="${board.title}"

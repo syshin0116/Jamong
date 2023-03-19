@@ -32,9 +32,8 @@ public class QABoard {
     private LocalDate regDate;  //등록날짜
     @UpdateTimestamp //UPDATE시 마지막 수정시간을 업데이트
     private LocalDate ModDate; //수정날짜
-
-
-
+    private String filename; //파일이름
+    private String filepath; //파일경로
 
 
 }
