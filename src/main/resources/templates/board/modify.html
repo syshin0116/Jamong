@@ -5,7 +5,7 @@
       layout:decorate="~{layout/layout}">
 <head>
     <meta charset="UTF-8">
-    <title>게시글 작성</title>
+    <title>게시글 수정</title>
 </head>
 
 <th:block layout:fragment="content">
@@ -64,24 +64,25 @@
 
     </style>
     <div class="headerLine1">
-        <h2>문의</h2>
+        <h2>수정</h2>
     </div>
 
     <div class="contentBox">
-    <form action="/board/writedo" method="post">
-        <div id="froala-editor">
-        <div class="box_write">
-        <input type="text" name="title" id="exampleFormControlInput1" placeholder="제목" size=164 maxlength=100>
-            <hr style="width: 100%; color:#212529;">
-            <br>
-            <textarea id="content" rows="10" cols="170" name="content"
-                      placeholder="내용을입력해주세요"></textarea>
-        </div>
-        <div class="write_Button">
-            <button type="submit" class="btn btn-outline-dark">작성</button>
-        </div>
-        </div>
-    </form>
+        <form th:action="@{'/board/update/'+${board.idx}}" method="post">
+            <div class="box_write">
+                <input type="text" name="title" id="exampleFormControlInput1" th:value="${board.title}" placeholder="제목" size=164 maxlength=100>
+                <hr style="width: 100%; color:#212529;">
+                <br>
+                <textarea id="content" rows="10" cols="170" name="content" th:utext="|${board.content}|"
+                          placeholder="내용을입력해주세요"></textarea>
+            </div>
+            <div class="write_Button">
+                <button type="submit" class="btn btn-outline-dark">수정</button>
+            </div>
+        </form>
     </div>
+    <script>
+        var editor = new FroalaEditor('#content');
+    </script>
 </th:block>
 </html>

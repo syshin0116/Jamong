@@ -1,21 +1,21 @@
 #server
 server:
-    address: localhost
-    port: 8080
+  address: localhost
+  port: 8080
 
 # Log
 logging:
-    level:
-        com:
-            spring: DEBUG
-        org:
-            hibernate:
-                type:
-                    descriptor:
-                        sql:
-                            BasicBinder: TRACE
-                SQL: DEBUG
-        root: info
+  level:
+    com:
+      spring: DEBUG
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
+        SQL: DEBUG
+    root: info
 
 spring:
     jpa:
@@ -46,12 +46,18 @@ spring:
     thymeleaf:
         cache: false
 
-    profiles:
-        group:
-            "local" : "local, jwt, oauth"
-        active : local
+  profiles:
+    group:
+      "local": "local, jwt, oauth"
+    active: local
+
+upload:
+  path: '/src/main/resources/static/image/upload-images'
 ---
 spring:
-    config:
-        activate:
-            on-profile: "local"
+  config:
+    activate:
+      on-profile: "local"
+#
+#upload:
+#  path: '/src/main/resources/static/image/upload-images'
