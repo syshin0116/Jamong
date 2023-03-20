@@ -28,7 +28,6 @@ public class QABoardController {
     @PostMapping("/writedo")
     public String boardWriteDo(QABoard qaBoard) { //entity에서 가져온 QABoard
         qaBoardService.write(qaBoard);
-
         System.out.println(qaBoard.getTitle());
         System.out.println(qaBoard.getContent());
         return "redirect:/board/list";
