@@ -1,6 +1,5 @@
 package com.ss.Jamong.user.controller;
 
-import com.nimbusds.openid.connect.sdk.AuthenticationResponse;
 import com.ss.Jamong.user.entity.UserRegisterRequest;
 import com.ss.Jamong.user.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -16,13 +15,29 @@ public class UserRestController {
     private final UserService userService;
 
     /*아이디 중복체크*/
-    @PostMapping("/idCheck")
+    @PostMapping("/usernameCheck")
     public Boolean idCheck(@RequestParam String username){
-        Boolean checkResult = userService.idCheck(username);
+        Boolean checkResult = userService.usernameCheck(username);
         return checkResult;
     }
+
+    /*닉네임 중복체크*/
+    @PostMapping("/nicknameCheck")
+    public Boolean nicknameCheck(@RequestParam String nickname){
+        Boolean checkResult = userService.nicknameCheck(nickname);
+        return checkResult;
+    }
+
+    /* 일반 회원가입 */
     @PostMapping("/register")
     public ResponseEntity<String> register(@RequestBody UserRegisterRequest userRegisterRequest)throws Exception{
+        userService.register(userRegisterRequest);
+        return ResponseEntity.ok("회원가입 성공");
+    }
+
+    /* 소셜 회원가입 */
+    @PostMapping("/oauth2Register")
+    public ResponseEntity<String> oauth2Register(@RequestBody UserRegisterRequest userRegisterRequest)throws Exception{
         userService.register(userRegisterRequest);
         return ResponseEntity.ok("회원가입 성공");
     }

@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -45,6 +46,8 @@ public class JwtService {
     private static final String ACCESS_TOKEN_SUBJECT = "AccessToken";
     private static final String REFRESH_TOKEN_SUBJECT = "RefreshToken";
     private static final String USERNAME_CLAIM = "username";
+
+    private static final String NICKNAME_CLAIM = "nickname";
     private static final String BEARER = "Bearer ";
 
     private final UserRepository userRepository;
@@ -62,6 +65,7 @@ public class JwtService {
                 //추가적으로 식별자나, 이름 등의 정보를 더 추가하셔도 됩니다.
                 //추가하실 경우 .withClaim(클래임 이름, 클래임 값) 으로 설정해주시면 됩니다
                 .withClaim(USERNAME_CLAIM, username)
+//                .withClaim(NICKNAME_CLAIM, nickname)
                 .sign(Algorithm.HMAC512(secretKey)); // HMAC512 알고리즘 사용, application-jwt.yml에서 지정한 secret 키로 암호화
     }
 
@@ -152,8 +156,18 @@ public class JwtService {
      * RefreshToken 헤더 설정
      */
     public void setRefreshTokenHeader(HttpServletResponse response, String refreshToken) {
+//        ResponseCookie cookie = ResponseCookie.from("refreshToken", refreshToken)
+//                .maxAge(14 * 24 * 60 * 60)
+//                .path("/")
+//                .secure(true)
+//                .sameSite("None")
+//                .httpOnly(true)
+//                .build();
+//        response.setHeader("Set-Cookie", cookie.toString());
+//        헤더 설정을 해줄 때 set-cookie 설정을 해주는 것
         response.setHeader(refreshHeader, refreshToken);
     }
+
 
     /**
      * RefreshToken DB 저장(업데이트)
@@ -169,6 +183,7 @@ public class JwtService {
     public boolean isTokenValid(String token) {
         try {
             JWT.require(Algorithm.HMAC512(secretKey)).build().verify(token);
+            log.info("JWTService.isTokenValid: 토큰 유효 확인");
             return true;
         } catch (Exception e) {
             log.error("유효하지 않은 토큰입니다. {}", e.getMessage());

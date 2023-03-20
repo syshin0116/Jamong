@@ -12,4 +12,5 @@ import java.util.List;
 public interface QABoardRepository extends JpaRepository<QABoard, Long>{
     List<QABoard> findAllByOrderByIdxDesc();
     Page<QABoard> findByTitleContainingOrContentContaining(String searchText, String searchText1, Pageable pageable);
+
 }

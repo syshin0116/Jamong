@@ -36,5 +36,6 @@ public class QABoard {
     private String filepath; //파일경로
 
 
+
 }
 

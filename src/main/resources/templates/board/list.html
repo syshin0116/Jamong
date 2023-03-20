@@ -169,5 +169,47 @@
             </li>
         </ul>
     </div>
+=======
+<th:block layout:fragment="css">
+    <style>
+        .layout {
+            width: 500px;
+            margin: 0 auto;
+            margin-top: 40px;
+        }
+        .title{
+            margin-top: 150px;
+            text-align: center;
+        }
+    </style>
+</th:block>
+<th:block layout:fragment="script"></th:block>
+
+<th:block layout:fragment="content">
+<!--<p style="text-align: center;">-->
+<div class="title">
+    <span style="font-size: 36px;">COMMUNITY</span>
+</p>
+</div>
+<div class="layout">
+    <table>
+        <thead>
+        <tr>
+            <th>글 번호</th>
+            <th>제목</th>
+            <a th:href="@{/board/write}"></th:href>글쓰기</a>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="board : ${list}">
+            <td th:text="${board.idx}">1</td>
+            <td>
+                <a th:text="${board.title}"
+                   th:href="@{/board/detail(idx=${board.idx})}">제목입니다.</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </th:block>
 </html>
