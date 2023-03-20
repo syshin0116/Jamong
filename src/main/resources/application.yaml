@@ -46,10 +46,10 @@ spring:
     thymeleaf:
         cache: false
 
-  profiles:
-    group:
-      "local": "local, jwt, oauth"
-    active: local
+    profiles:
+      group:
+        "local": "local, jwt, oauth"
+      active: local
 
 upload:
   path: '/src/main/resources/static/image/upload-images'
