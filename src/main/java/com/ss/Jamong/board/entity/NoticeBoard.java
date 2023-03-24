@@ -12,21 +12,19 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
-
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@SequenceGenerator(name="QABOARD_SEQ_GENERATOR",
-        sequenceName="QABOARD_SEQ",
+@SequenceGenerator(name="NoticeBoard_SEQ_GENERATOR",
+        sequenceName="NoticeBoard_SEQ",
         initialValue=1,
         allocationSize=1)
-public class QABoard {
+public class NoticeBoard {
     @Id //PK를 의미
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="QABOARD_SEQ_GENERATOR")
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="NoticeBoard_SEQ_GENERATOR")
     private Long idx; //게시판 번호
-
 
     @NotNull
     @NotBlank(message = "제목은 필수 입력값입니다.")
@@ -46,6 +44,4 @@ public class QABoard {
 
     @UpdateTimestamp //UPDATE시 마지막 수정시간을 업데이트
     private LocalDate ModDate; //수정날짜
-
 }
-

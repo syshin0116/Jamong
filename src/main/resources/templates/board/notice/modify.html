@@ -5,7 +5,7 @@
       layout:decorate="~{layout/layout}">
 <head>
     <meta charset="UTF-8">
-    <title>게시글 작성</title>
+    <title>공지사항 수정</title>
 </head>
 
 <th:block layout:fragment="content">
@@ -39,7 +39,6 @@
             font-family: 'Noto Sans KR', sans-serif;
             float: left;
         }
-
         textarea {
             resize: none;
             border: #ffffff;
@@ -56,72 +55,34 @@
         input:focus {
             outline: none;
         }
-
-        .write_Button {
+        .write_Button{
             text-align: center;
         }
-
-        .contentBox {
-            margin-bottom: 100px;
+        .contentBox{
+            margin-bottom: 80px;
         }
 
-        .titleCheck {
-            font-size: 13px;
-            color: red;
-        }
-
-        .contentCheck {
-            font-size: 13px;
-            color: red;
-        }
-        textarea{
-            float: left;
-        }
     </style>
     <div class="headerLine1">
-        <h2>문의하기</h2>
+        <h2>공지사항 수정</h2>
     </div>
 
     <div class="contentBox">
-        <form action="/board/writedo" method="post" th:object="${qaBoard}">
+        <form th:action="@{'/board/notice/update/'+${board.idx}}" method="post">
             <div class="box_write">
-                <div class="form-group">
-                    <input type="text" name="title" id="title" placeholder="제목" size=164 maxlength=100>
-                    <div class="titleCheck"></div>
-                </div>
+                <input type="text" name="title" id="exampleFormControlInput1" th:value="${board.title}" placeholder="제목" size=164 maxlength=100>
                 <hr style="width: 100%; color:#212529;">
                 <br>
-                <div style="white-space:pre;">
-                <textarea id="content" rows="9" cols="150" name="content"
-                          placeholder="내용을입력해주세요 "></textarea></div>
-                <div class="contentCheck"></div>
+                <textarea id="content" rows="10" cols="170" name="content" th:utext="|${board.content}|"
+                          placeholder="내용을입력해주세요"></textarea>
             </div>
-            <br>
             <div class="write_Button">
-                <button type="submit" id="writeBtn" class="btn btn-outline-dark">작성</button>
+                <button type="submit" class="btn btn-outline-dark">수정</button>
             </div>
         </form>
     </div>
+    <script>
+        var editor = new FroalaEditor('#content');
+    </script>
 </th:block>
 </html>
-<script>
-    $('#writeBtn').click(function () {
-
-        let title = $('#title').val();
-        let content = $('#content').val();
-
-        // 제목 공백 확인
-        if (title == "" || title == null) {
-            $('.titleCheck').html('제목를 입력해주세요.');
-            $('#title').focus();
-            return false;
-       }
-        // 내용 공백 확인
-        if (content == "" || content == null) {
-            $('.contentCheck').html('내용을 입력해주세요.');
-            $('#content').focus();
-            return false;
-        }
-    });
-
-</script>

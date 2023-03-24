@@ -7,7 +7,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,20 +19,23 @@ public class QABoardController {
     private QABoardService qaBoardService;
 
     //게시글 작성폼
-    @GetMapping("/write")
-    public String boardWriteForm() {
+   @GetMapping("/write")
+    public String boardWriteForm(Model model) {
+        model.addAttribute("qaBoard", new QABoard());
         return "/board/write";
     }
 
     //게시글 작성
     @PostMapping("/writedo")
     public String boardWriteDo(QABoard qaBoard) { //entity에서 가져온 QABoard
+
         qaBoardService.write(qaBoard);
 
         System.out.println(qaBoard.getTitle());
         System.out.println(qaBoard.getContent());
         return "redirect:/board/list";
     }
+
 
     //리스트, 페이지 검색 및 페이징
     @GetMapping("/list")

@@ -5,7 +5,7 @@
       layout:decorate="~{layout/layout}">
 <head>
     <meta charset="UTF-8">
-    <title>게시글 리스트 페이지</title>
+    <title>공지사항 리스트</title>
 </head>
 
 <th:block layout:fragment="content">
@@ -105,19 +105,10 @@
             color: black;
         }
 
-        .button_write {
-            display: inline-block;
-            padding: 5px 10px;
-            border: 1px solid #212529;
-            box-sizing: border-box;
-            overflow: hidden;
-            background-color: #fff;
-            vertical-align: middle;
-            cursor: pointer;
-            float: right;
-            font-family: 'Noto Sans KR', sans-serif;
-            font-size: 13px;
+        .noticeFont {
+            color: red;
         }
+
     </style>
     <div class="container px-5 my-5 px-5">
         <div class="COMMUNITY">
@@ -133,10 +124,10 @@
             </div>
             <div class="col-lg-10">
                 <div class="box_3">
-                    Q&A <span th:text="${boards.totalElements}"></span>
+                    NOTICE <span th:text="${boards.totalElements}"></span>
                 </div>
                 <div class="box_4">
-                    <form method="GET" th:action="@{/board/list}">
+                    <form method="GET" th:action="@{/board/notice/list}">
                         <div class="search">
                             <input type="text" id="searchText" name="searchText" placeholder="search"
                                    th:value="${param.searchText}">
@@ -144,32 +135,30 @@
                     </form>
                 </div>
                 <br>
-                <br>
                 <table class="table">
                     <thead>
                     <tr>
-                        <th width="8%" style="align-content:center;">No</th>
-                        <th width="70%">제목</th>
-                        <th width="10%">작성자</th>
-                        <th width="12%">작성날짜</th>
+                        <th width="8%"></th>
+                        <th width="70%"></th>
+                        <th width="10%"></th>
+                        <th width="12%"></th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="board : ${boards}" style="a:link black; text-decoration: none;">
-                        <td th:text="${board.idx}"></td>
-
+                        <td style="color:red;">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            [공지]
+                        </td>
                         <td>
                             <a th:text="${board.title}"
-                               th:href="@{'/board/detail/'+${board.idx}}"></a>
+                               th:href="@{'/board/notice/detail/'+${board.idx}}"></a>
                         </td>
                         <td th:text="${board.writer}"></td>
                         <td th:text="${board.modDate}"></td>
                     </tr>
                     </tbody>
                 </table>
-                <button type="button" class="btn btn-outline-dark" onclick="location.href='/board/write'"
-                        style="float:right;">문의하기
-                </button>
             </div>
         </div>
         <br>
@@ -181,12 +170,13 @@
             </li>
             <li class="page-item" th:classappend="${i == boards.pageable.pageNumber + 1} ? 'disabled'"
                 th:each="i : ${#numbers.sequence(startPage, endPage)}">
-                <a class="page-link" href="#" th:href="@{/board/list(page=${i - 1},searchText=${param.searchText})}"
+                <a class="page-link" href="#"
+                   th:href="@{/board/notice/list(page=${i - 1},searchText=${param.searchText})}"
                    th:text="${i}">1</a>
             </li>
             <li class="page-item" th:classappend="${boards.totalPages == boards.pageable.pageNumber + 1} ? 'disabled'">
                 <a class="page-link" href="#"
-                   th:href="@{/board/list(page=${boards.pageable.pageNumber + 1},searchText=${param.searchText})}">>></a>
+                   th:href="@{/board/notice/list(page=${boards.pageable.pageNumber + 1},searchText=${param.searchText})}">>></a>
             </li>
         </ul>
     </div>

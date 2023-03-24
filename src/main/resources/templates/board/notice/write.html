@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<head>
+  <meta charset="UTF-8">
+  <title>공지사항 작성</title>
+</head>
+
+<th:block layout:fragment="content">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100&display=swap');
+
+    .box_write {
+      position: relative;
+      margin: 30px 150px 100px 150px;
+      text-align: left;
+      font-family: 'Noto Sans KR', bold, sans-serif;
+    }
+
+    .btn {
+      font-size: 13px;
+      line-height: 1.7;
+      padding: 4px 15px;
+      border-radius: 50px;
+    }
+
+    .btn-outline-dark {
+      --bs-btn-hover-bg: none;
+      --bs-btn-hover-color: #212529;
+      --bs-btn-active-color: none;
+      --bs-btn-active-bg: none;
+    }
+
+    .headerLine1 {
+      padding: 50px;
+      margin-left: 100px;
+      font-family: 'Noto Sans KR', sans-serif;
+      float: left;
+    }
+
+    textarea {
+      resize: none;
+      border: #ffffff;
+    }
+
+    textarea:focus {
+      outline: none;
+    }
+
+    input {
+      border: #ffffff;
+    }
+
+    input:focus {
+      outline: none;
+    }
+
+    .write_Button {
+      text-align: center;
+    }
+
+    .contentBox {
+      margin-bottom: 100px;
+    }
+
+    .titleCheck {
+      font-size: 13px;
+      color: red;
+    }
+
+    .contentCheck {
+      font-size: 13px;
+      color: red;
+    }
+    textarea{
+      float: left;
+    }
+  </style>
+  <div class="headerLine1">
+    <h2>공지사항 작성하기</h2>
+  </div>
+
+  <div class="contentBox">
+    <form action="/board/notice/writedo" method="post" >
+      <div class="box_write">
+        <div class="form-group">
+          <input type="text" name="title" id="title" placeholder="제목" size=164 maxlength=100>
+          <div class="titleCheck"></div>
+        </div>
+        <hr style="width: 100%; color:#212529;">
+        <br>
+        <div style="white-space:pre;">
+                <textarea id="content" rows="9" cols="150" name="content"
+                          placeholder="내용을입력해주세요 "></textarea></div>
+        <div class="contentCheck"></div>
+      </div>
+      <br>
+      <div class="write_Button">
+        <button type="submit" id="writeBtn" class="btn btn-outline-dark">작성</button>
+      </div>
+    </form>
+  </div>
+</th:block>
+</html>
+<script>
+  $('#writeBtn').click(function () {
+
+    let title = $('#title').val();
+    let content = $('#content').val();
+
+    // 제목 공백 확인
+    if (title == "" || title == null) {
+      $('.titleCheck').html('제목를 입력해주세요.');
+      $('#title').focus();
+      return false;
+    }
+    // 내용 공백 확인
+    if (content == "" || content == null) {
+      $('.contentCheck').html('내용을 입력해주세요.');
+      $('#content').focus();
+      return false;
+    }
+  });
+
+</script>

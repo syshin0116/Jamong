@@ -5,7 +5,7 @@
       layout:decorate="~{layout/layout}">
 <head>
     <meta charset="UTF-8">
-    <title>게시글 디테일</title>
+    <title>공지사항 디테일</title>
 </head>
 <th:block layout:fragment="content">
     <style>
@@ -39,29 +39,23 @@
             --bs-btn-active-color: none;
             --bs-btn-active-bg: none;
         }
-        .admin_reply{
-            padding: 40px;
-           background:#f4f4f4;
-            white-space:pre;
-        }
     </style>
     <div class="box_1">
         <div class="box_title">
-        <h2 th:text="${board.title}">제목입니다.</h2>
+            <h2 th:text="${board.title}">제목</h2>
         </div>
         <br>
-        <p th:utext="${board.regDate}"></p>
+        <p th:utext="${board.regDate}"></p><p th:utext="${board.views_hit}"></p>
         <hr style="width: 100%; margin: auto; color:#e5e7eb; border-width:2px;">
         <div class="box_content">
-                <p th:utext="${board.content}"></p>
+            <p th:utext="${board.content}"></p>
         </div>
         <div class="buttons">
-            <button class="btn btn-outline-dark" th:onclick="'location.href=\'' + '/board/delete/'+${board.idx}+ '\''">삭제</button>
-            <button class="btn btn-outline-dark" th:onclick="'location.href=\'' + '/board/modify/'+${board.idx}+ '\''">수정</button>
-    </div>
+            <button class="btn btn-outline-dark" th:onclick="'location.href=\'' + '/board/notice/delete/'+${board.idx}+ '\''">삭제</button>
+            <button class="btn btn-outline-dark" th:onclick="'location.href=\'' + '/board/notice/modify/'+${board.idx}+ '\''">수정</button>
+        </div>
         <br>
         <br>
-    <div class="admin_reply"><p th:utext="${board.content}"></p></div>
     </div>
 </th:block>
 </html>
